@@ -15,17 +15,19 @@ public class Ch10 {
             private int damage = 0;
 
             String[] armory = {"Exploding Pumpkin", "Candy Corn", "Paper Bag"}; //armory array
-            public WarriorFred(String setNickName, int lifeForce, int damage) { //constructor
+            public WarriorFred(String setNickName, int setLifeForce, int setDamage) { //constructor
                 this.nickName = setNickName;
+                this.lifeForce = setLifeForce;
+                this.damage = setDamage;
+                //explicit setters
             }
 
             public String getNickName() {
                 return nickName;
             }
             public void setNickName(String nickName) {
-                this.nickName = nickName;
+               this.nickName = nickName;
             }
-
 
             public int getLifeForce() {
                 return lifeForce;
@@ -35,30 +37,26 @@ public class Ch10 {
             }
 
 
-            public int getDamage() { //THIS WHOLE METHOD IS MESSED UP RIGHT NOW!!!!!!!!!!!!
-                if (damage + takenDamage() >= 10) {
+
+            public int getDamage() {
+
+                int newDamage = takenDamage();
+                if (damage + newDamage >= 10) {
                     lifeForce= lifeForce - 1;
                     damage = 0;
                 }
-                if (damage + takenDamage() < 10) {
-                    damage = damage + takenDamage();
+                if (damage + newDamage < 10) {
+                    damage = damage + newDamage;
                 }
                 return damage;
             }
 
-            public void setDamage (int Damage) {
-                this.damage = damage;
-            }
 
-
-
-            public int takenDamage () { //random number for damage taken (1-10)
+                public int takenDamage () { //random number for damage taken (1-10)
                 int[] damageDone = {1,2,3,4,5,6,7,8,9,10};
                 Random random = new Random();
-                return (damageDone[random.nextInt(damageDone.length)]);
+                 return(damageDone[random.nextInt(damageDone.length)]);
             }
-
-
             public void reaction () {
                 String[] sound = {"OW!", "Wham!", "POW!", "Boffo!!", "KaPow!", "That one hurt!"};
                 Random random = new Random();
