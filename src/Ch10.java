@@ -16,78 +16,81 @@ public class Ch10 {
 
             String[] armory = {"Exploding Pumpkin", "Candy Corn", "Paper Bag"}; //armory array
 
-            public WarriorFred(String setNickName) { //constructor
+            public WarriorFred(String setNickName, int lifeForce, int damage) { //constructor
                 this.nickName = setNickName;
+
             }
-                public String getNickName () {
-                    return nickName;
+
+            public String getNickName() {
+                return nickName;
+            }
+
+            public void setNickName(String nickName) {
+                this.nickName = nickName;
+            }
+
+
+            public int getLifeForce() {
+                return lifeForce;
+            }
+
+            public void setLifeForce(int lifeForce) {
+                this.lifeForce = lifeForce;
+            }
+
+
+            public int getDamage() {
+                if (damage + takenDamage() >= 10) {
+                    lifeForce= lifeForce - 1;
+                    damage = 0;
                 }
-                public void setNickName (String nickName){
-                    this.nickName = nickName;
+                if (damage + takenDamage() < 10) {
+                    damage = damage + takenDamage();
                 }
+                return damage;
+            }
 
-
-                public int getLifeForce () {
-                    return lifeForce;
-                }
-                public void setLifeForce (int lifeForce){
-                    this.lifeForce = lifeForce;
-                }
-
-
-
-                public int getDamage () { //THIS WHOLE METHOD IS NOT WORKING CORRECTLY
-                    if (damage + takenDamage()< 10) {
-                        damage = damage + takenDamage();
-                    }
-                    if (damage + takenDamage() >= 10) {
-                        damage = 0;
-                        lifeForce = lifeForce - 1;
-                    }
-                    return damage;
-                }
-
-                public void setDamage (int Damage) {
-                   this.damage = damage;
-                }
-
-
-
-                public int takenDamage () { //random number for damage taken (1-10)
-                    int[] damageDone = {1,2,3,4,5,6,7,8,9,10};
-                    Random random = new Random();
-                    return (damageDone[random.nextInt(damageDone.length)]);
-                }
-
-
-                public void reaction () {
-                    String[] sound = {"OW!", "Wham!", "POW!", "Boffo!!", "KaPow!", "That one hurt!"};
-                    Random random = new Random();
-                    System.out.println(sound[random.nextInt(sound.length)]);
-                }
-
-
-
-                public void reSpawn() { //sets lifeForce back to 10 hp
-                    lifeForce = 10;
-                }
-                public boolean isDead () {
-                    if (lifeForce <= 0) return true;
-                    else return false;
-                }
-                public boolean isAlive () {
-                    if (lifeForce > 0) return true;
-                    else return false;
-                }
+            public void setDamage (int Damage) {
+                this.damage = damage;
             }
 
 
 
-        WarriorFred archer = new WarriorFred("Warrior Archer"); //new obj named Warrior Archer
-        WarriorFred mage = new WarriorFred("Warrior Mage");//new obj named Warrior Mage
-        WarriorFred healer = new WarriorFred("Warrior Healer");//new obj named Warrior Healer
-        WarriorFred tank = new WarriorFred("Warrior Tank");//new obj named Warrior Tank
-        WarriorFred rouge = new WarriorFred("Warrior Rouge");//new obj named Warrior Rouge
+            public int takenDamage () { //random number for damage taken (1-10)
+                int[] damageDone = {1,2,3,4,5,6,7,8,9,10};
+                Random random = new Random();
+                return (damageDone[random.nextInt(damageDone.length)]);
+            }
+
+
+            public void reaction () {
+                String[] sound = {"OW!", "Wham!", "POW!", "Boffo!!", "KaPow!", "That one hurt!"};
+                Random random = new Random();
+                System.out.println(sound[random.nextInt(sound.length)]);
+            }
+
+
+
+            public void reSpawn() { //sets lifeForce back to 10 hp
+                lifeForce = 10;
+            }
+            public boolean isDead () {
+                if (lifeForce <= 0) return true;
+                else return false;
+            }
+            public boolean isAlive () {
+                if (lifeForce > 0) return true;
+                else return false;
+            }
+        }
+
+
+
+        WarriorFred archer = new WarriorFred("Warrior Archer",10,0); //new obj named Warrior Archer
+        WarriorFred mage = new WarriorFred("Warrior Mage",10,0);//new obj named Warrior Mage
+        WarriorFred healer = new WarriorFred("Warrior Healer",10,0);//new obj named Warrior Healer
+        WarriorFred tank = new WarriorFred("Warrior Tank",10,0);//new obj named Warrior Tank
+        WarriorFred rouge = new WarriorFred("Warrior Rouge",10,0);//new obj named Warrior Rouge
 
         System.out.println("*** Battle! ***   All warriors start with 10 units of health for 10 rounds");
         for (int i = 1; i < 11; i++) { // 10 rounds
@@ -117,9 +120,27 @@ public class Ch10 {
 }
 
 
+/*Code should look like this:
+    Warrior Archer status (health=10, damage=0) //start at health=10 and damage=0
+    Archer is attacked and takes 9 units of damage //random amount of damage
+    That one hurt!
 
+    Warrior Archer status (health=10, damage=9) //sets takenDamage -> damage
+    Archer is attacked and takes 3 units of damage
+    POW!
 
+    Warrior Archer status (health=9, damage=0) //9+3>=10... so damage=0 and health= health - 1
+    Archer is attacked and takes 6 units of damage
+    Wham!
 
+    Warrior Archer status (health=9, damage=6)
+    Archer is attacked and takes 5 units of damage
+    KaPow!
+
+    Warrior Archer status (health=8, damage=0)
+    Archer is attacked and takes 10 units of damage
+    KaPow!
+*/
 
 
 
