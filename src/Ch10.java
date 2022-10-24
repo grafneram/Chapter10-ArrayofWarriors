@@ -89,8 +89,9 @@ public class Ch10 {
         WarriorFred rouge = new WarriorFred("Warrior Rouge",10,0);//new obj named Warrior Rouge
 
         System.out.println("*** Battle! ***   All warriors start with 10 units of health for 10 rounds");
-        for (int i = 1; i < 11; i++) { // 10 rounds
-            System.out.println("\nRound: "+i);
+
+        for (int i = 1; i < 11; i++) { // 10 rounds loops through
+            System.out.println("\nRound: " + i);
 
             System.out.println("\n" + archer.getNickName() + " status (health=" + archer.getLifeForce() + ", damage=" + archer.getDamage() + ")");
             System.out.println("Archer is attacked and takes " + archer.takenDamage() + " units of damage");
@@ -111,6 +112,16 @@ public class Ch10 {
             System.out.println("\n" + rouge.getNickName() + " status (health=" + rouge.getLifeForce() + ", damage=" + rouge.getDamage() + ")");
             System.out.println("Rouge is attacked and takes " + rouge.takenDamage() + " units of damage");
             rouge.reaction();
+
+            if (i ==10){ //final status message for last round: Only prints on last round
+                System.out.println("\nHow did the warriors fare? ");
+                System.out.println("\n" + archer.getNickName() + " status (health=" + archer.getLifeForce() + ", damage=" + archer.getDamage() + ")");
+                System.out.println("\n" + mage.getNickName() + " status (health=" + mage.getLifeForce() + ", damage=" + mage.getDamage() + ")");
+                System.out.println("\n" + healer.getNickName() + " status (health=" + healer.getLifeForce() + ", damage=" + healer.getDamage() + ")");
+                System.out.println("\n" + tank.getNickName() + " status (health=" + tank.getLifeForce() + ", damage=" + tank.getDamage() + ")");
+                System.out.println("\n" + rouge.getNickName() + " status (health=" + rouge.getLifeForce() + ", damage=" + rouge.getDamage() + ")");
+            }
         }
+        }
+
     }
-}
