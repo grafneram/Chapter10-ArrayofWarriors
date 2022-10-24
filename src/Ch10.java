@@ -7,8 +7,6 @@ Print the information for each of the five Warriors by using the printInfo() fun
 import java.util.Random;
 public class Ch10 {
     public static void main(String[] args) { //main method
-
-
         class WarriorFred {
             private String nickName = "unknown";
             private int lifeForce = 10;
@@ -39,23 +37,23 @@ public class Ch10 {
 
 
             public int getDamage() {
-
-                int newDamage = takenDamage();
-                if (damage + newDamage >= 10) {
-                    lifeForce= lifeForce - 1;
-                    damage = 0;
-                }
-                if (damage + newDamage < 10) {
-                    damage = damage + newDamage;
-                }
                 return damage;
             }
 
 
-                public int takenDamage () { //random number for damage taken (1-10)
-                int[] damageDone = {1,2,3,4,5,6,7,8,9,10};
+            public int takenDamage () { //random number for damage taken (1-10)
+              int[] damageDone = {1,2,3,4,5,6,7,8,9,10};
                 Random random = new Random();
-                 return(damageDone[random.nextInt(damageDone.length)]);
+                int newDamageDone=(damageDone[random.nextInt(damageDone.length)]);
+
+                if (damage + newDamageDone  >= 10) {
+                    lifeForce= lifeForce - 1;
+                   damage = 0;
+                }
+                if (damage + newDamageDone < 10) {
+                    damage = damage + newDamageDone;
+                }
+                return newDamageDone;
             }
             public void reaction () {
                 String[] sound = {"OW!", "Wham!", "POW!", "Boffo!!", "KaPow!", "That one hurt!"};
