@@ -15,16 +15,13 @@ public class Ch10 {
             private int damage = 0;
 
             String[] armory = {"Exploding Pumpkin", "Candy Corn", "Paper Bag"}; //armory array
-
             public WarriorFred(String setNickName, int lifeForce, int damage) { //constructor
                 this.nickName = setNickName;
-
             }
 
             public String getNickName() {
                 return nickName;
             }
-
             public void setNickName(String nickName) {
                 this.nickName = nickName;
             }
@@ -33,13 +30,12 @@ public class Ch10 {
             public int getLifeForce() {
                 return lifeForce;
             }
-
             public void setLifeForce(int lifeForce) {
                 this.lifeForce = lifeForce;
             }
 
 
-            public int getDamage() {
+            public int getDamage() { //THIS WHOLE METHOD IS MESSED UP RIGHT NOW!!!!!!!!!!!!
                 if (damage + takenDamage() >= 10) {
                     lifeForce= lifeForce - 1;
                     damage = 0;
